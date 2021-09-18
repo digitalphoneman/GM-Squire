@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+.header {
+  background-color: #9933cc;
+  color: #ffffff;
+  padding: 5px;
+  text-align: center;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color: #33b5e5;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.84);
+}
+
+.menu li:hover {
+  background-color: #0099cc;
+}
+
+.aside {
+  background-color: #33b5e5;
+  padding: 15px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.footer {
+  background-color: #0099cc;
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+}
+
+input {text-align : center;}
+
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+
+form {
+  font-size: 15px;
+}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+.header-1 {
+  background-color: #f1f1f1;
+  padding: 5px;
+  text-align: center;
+  font-size: 25px;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+/*  height: 300px; Should be removed. Only for demonstration */
+}
+
+/* Left column */
+.column.lside {
+  width: 15%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 35%;
+}
+
+/* Right column */
+.column.rside {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+.createAttack {cursor : pointer}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .column.lside, .column.middle, .column.rside {
+    width: 100%;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <H2> GM Squire </H2>
+</div>
+
+<div class="row">
+  <div class="col-2 col-s-2 menu">
+    <ul>
+      <li>Character</li>
+      <li>Weapons</li>
+      <li>Skills</li>
+      <li>Feats</li>
+    </ul>
+  </div>
+
+  <div class="col-7 col-s-9 header-1">
+    <h3>Character stats</h3>
+  <form id="charStats">
+    Caster Level:
+    <input type="text" size="3" name="CL" text-align="center">
+    Base Attack Bonus:
+    <input type="text" size="3" name="BAB1">
+    /
+    <input type="text" size="3" name="BAB2">
+    /
+    <input type="text" size="3" name="BAB3">
+    /
+    <input type="text" size="3" name="BAB4">
+    /
+    <input type="text" size="3" name="BAB5">
+    <br><br>
+    Str:
+    <input type="text" size="3" name="STR">
+    Dex:
+    <input type="text" size="3" name="DEX">
+    Con:
+    <input type="text" size="3" name="CON">
+    Int:
+    <input type="text" size="3" name="INT">
+    Wis:
+    <input type="text" size="3" name="WIS">
+    Char:
+    <input type="text" size="3" name="CHR">
+  </form>
+
+  <h3>Combat stats</h3>
+  <form id="combatStats">
+    <input type="checkbox" name="VSf">
+    Vital Strike:
+    <input type="checkbox" name="ASf">
+    Arcane Strike:
+    <input type="checkbox" name="DAf">
+    Deadly Aim:
+    <input type="checkbox" name="SUb">
+    Bardic Courage:
+    <input type="checkbox" name="SUw">
+    Intense Spell:<br/><hr/>
+	<input type="checkbox" name="ESmm">
+    MetaMagic Empower:
+	<input type="checkbox" name="ISmm">
+    MetaMagic Intensify:
+	<input type="checkbox" name="MXmm">
+    MetaMagic Maximize:<br/><hr/>
+    <input type="checkbox" name="johnRules">
+    John Rules:
+    <input type="checkbox" name="lawlerRules">
+    Lawler Rules:<br/><br/>
+  </form>
+  </div>
+
+  <div class="col-3 col-s-12">
+    <div class="aside">
+      <h3>What?</h3>
+      <p>Chania is a city on the island of Crete.</p>
+      <h3>Where?</h3>
+      <p>Crete is a Greek island in the Mediterranean Sea.</p>
+      <h3>How?</h3>
+      <p>You can reach Chania airport from all over Europe.</p>
+    </div>
+  </div>
+  
+</div>
+<div class="row">
+  <div class="column lside" style="background-color:#aaa;">Dice Rolls
+	<p id="diceRolled"><p>
+  </div>
+  <div class="column middle" style="background-color:#bbb;">Attack Types:
+	<p id= "attackOptions">	</p>
+	<a class = "createAttack" cursor = "pointer">
+		<button onclick=createAttack()>Create</button> or select a
+
+		<select id="attackType" >
+			<option>Choose one</option>
+			<option>Weapon</option>
+			<option>Spell</option>
+			<option>Magical item</option>
+		</select>
+		<button onclick = selectAttack()>Select</button>
+	</a>
+
+	<div class="attack" >
+	</div>
+  </div>
+  <div class="column rside" style="background-color:#ccc;">
+
+    <div class="Damage">Damage
+	<button id="resetBtn" >Reset</button>
+	<ol>
+	  <ul id="dmg1"></ul>
+	</ol>
+    </div>
+
+    <div class="Weapons"> Weapons
+		<select id="weaponChosen">
+			<option>Morning Star:1BAB*d8*(bludgeon and pierce)*(crit, 2x)*(simple)*(effect)</option>
+			<option>Heavy Crosbow: 1BAB*d10*(pierce)*(crit, 19-20/2x)*(simple)*(effect)</option>
+		
+		</select>
+		<button onclick = selectWeapon()>Select</button>
+		<button onclick = selectWeaponDone()>Finished</button>
+
+    </div>
+
+    <div class="Spells"> Spells
+		<select id="spellChosen" >
+			<option>Acid Splash:1*d3*(missile of acid)*(1 missile)*(abjugation)*(1st level)</option>
+			<option>Ray of Frost:1*d3*(ray of ice)*(1 ray)*(evocation)*(0th level)</option>
+			<option>Magic Missile:1*d4+1*(missiles of force)*((CL-1)/2,max5 missiles)*(evocation)*(1st level)</option>
+			<option>Mythic Magic Missile:2*d4+1*(missiles of force)*((CL-1)/2,max5 missiles)*(evocation)*(1st level)</option>
+			<option>Augmented Magic Missile:2*d4+1*(missiles of force)*((CL-1)/1,max10 missiles)*(evocation)*(1st level)</option>
+			<option>AMM:4*d4+1*(missiles of force)*((CL-1)/1,max10 missiles)*(evocation)*(1st level)</option>
+			<option>Shocking Grasp:(1CL,max5)*d6*(touch of electricity)*(1 touch)*(evocation)*(1st level)</option>
+			<option>Mythic Shocking Grasp:(1CL,max5)*d8*(touch of electricity)*(1 touch)*(evocation)*(2nd level)</option>
+			<option>Snowball:(1CL,max5)*d6*(ball of ice)*(1 ball)*(evocation)*(1st level)</option>
+			<option>Burning Hands:(1CL,max5)*d4*(touch of fire)*(1 touch)*(evocation)*(1st level)</option>
+			<option>Mythic Burning Hands:(1CL,max5)*d6*(touch of fire)*(1 touch)*(evocation)*(2nd level)</option>
+			<option>Acid Arrow:2*d4+2d4(acid)*(arrow of acid and pierce)*(1 arrow)*(evocation)*(2nd level)</option>
+			<option>Flaming Sphere:3*d6*(sphere of fire)*(1 sphere moves CL times)*(evocation)*(2nd level)</option>
+			<option>Greater Flaming Sphere:6*d6*(sphere of fire)*(1 sphere moves CL times)*(evocation)*(4th level)</option>
+			<option>Scorching Ray:4*d6*(rays of fire)*((CL-3)/4,max3 rays)*(evocation)*(2nd level)</option>
+			<option>Mythic Scorching Ray:6*d6*(rays of fire)*((CL-3)/4,max3 rays)*(evocation)*(2nd level)</option>
+			<option>Fireball:(1CL,max6)*d6*(ball of fire)*(1 ball)*(evocation)*(3rd level)</option>
+			<option>Mythic Fireball:(1CL,max10)*d10+2d6 per round until extinguish)*(ball of fire)*(1 ball)*(evocation)*(4th level)</option>
+			<option>Augmented Fireball:(1CL,max20)*(d10+2d6 per round until extinguish)*(ball of fire)*(1 ball)*(evocation)*(6th level)</option>
+
+		</select>
+		<button onclick = selectSpell()>Select</button>
+		</br></br>
+		<button onclick = selectSpellDone()>Finished</button>
+	</a>
+
+
+    </div>
+
+    <div class="MagicItems"> Magic Items
+
+    </div>
+
+  </div>
+
+<div class="footer">
+  <p>Resize the browser window to see how the content respond to the resizing.</p>
+</div>
+<script>
+
+//	This object initializes bonus damage feats and collects updated stats
+//	This also rolls the dice randomly
+//
+//
+
+
+let entry = {	
+  name: "",
+  damageString : "",
+  getData : function(){
+	this.name 		    = $(".attack a")[0].firstElementChild.value;
+	this.damageString	= $(".attack a")[2].firstElementChild.value;
+	this.putData();
+	$(".attack a").remove();
+	$(".attack button").remove();
+  },
+  putData : function(){
+	let stringy = "<button value='" + this.damageString + "* " + this.name + "' onclick = 'spellInsert(this)' oncontextmenu = 'removeAttack(this)'>" + this.name + "</button>";
+	$("#attackOptions").append(stringy);
+  }
+};
+let damageSpace     = $(".Damage");
+let weaponSpace     = $(".Weapons");
+let spellSpace      = $(".Spells");
+let magicItemSpace  = $(".MagicItems");
+weaponSpace.hide();
+spellSpace.hide();
+magicItemSpace.hide();
+//$(".aside").hide();
+
+function removeAttack(e){
+  event.preventDefault();		// prevents the default usage of right click.
+  let removeIt = prompt("You want to remove it? (Y/N)");
+  if(removeIt == "y" || removeIt == "Y"){ $(e).delay("Slow").fadeOut(); }
+}
+
+function createAttack(){
+  alert("Create another attack you want!");
+  let attack = $(".attack");
+  let stringy = "<a> Enter it's name here:<input type='text' ></a><br/><a>Enter it's damage string as: </a><br>";
+  stringy		+= "<a> 'Spell name:1*d4+1*(missiles of force)*((CL-1)/2,max5 missiles)*(evocation)*(1st level)'<input type ='text'></a>";
+  stringy   	+= "<button onclick='entry.getData()'>Click to add</button>";
+  attack.append(stringy);
+// $(".attack a")
+//	var myWindow = window.open("","","width200,height=200,toolbar=yes,scrollbars=yes,resizable=yes");
+//	myWindow.document.write("<h2>Let's get started</h2>");
+//<br/>	<input list='browsers' name='browser'><datalist id='browsers'> <option value='Internet Explorer'> <option value='Firefox'> <option value='Chrome'> <option value='Opera'><option value='Safari'></datalist>");
+}
+
+function selectAttack(){
+  let selectAttack = $("#attackType");
+  console.log(selectAttack[0].value);
+
+// Clear the Activity window first
+  damageSpace.hide();
+  spellSpace.hide();
+  magicItemSpace.hide();
+  weaponSpace.hide();
+
+// Show Activity chosen
+  if	   (selectAttack[0].value ==  "Choose one")  {damageSpace.show();}
+  else if  (selectAttack[0].value ==  "Weapon")      {weaponSpace.show();}
+  else if  (selectAttack[0].value ==  "Spell")       {spellSpace.show();}
+  else     {magicItemSpace.show();}
+}
+
+function selectWeapon(){
+  let weaponChosen = $("#weaponChosen");
+  let weapon       = weaponChosen[0].value.split(":");
+  let placeWeapon  = $("#attackOptions");
+  placeWeapon.append("<button value = '"+weapon[1] + "*"+weapon[0]+ "' onclick='spellInsert(this)' oncontextmenu = 'removeAttack(this)'>"+weapon[0]+"</button><a class='damageTotal'></a>");
+  weaponSpace.hide();
+  damageSpace.show();
+  console.log(weapon);
+}
+function selectWeaponDone(){
+  weaponSpace.hide();
+  damageSpace.show();
+}
+
+function selectSpell(){
+  let spellChosen = $("#spellChosen");
+  let spell       = spellChosen[0].value.split(":");
+  let placeSpell  = $("#attackOptions");
+  placeSpell.append("<button value = '"+spell[1] + "*"+spell[0]+ "' onclick='spellInsert(this)' oncontextmenu = 'removeAttack(this)'>"+spell[0]+"</button><a class='damageTotal'></a>");
+  spellSpace.hide();
+  damageSpace.show();
+  console.log(spell);
+}
+
+function selectSpellDone(){
+  spellSpace.hide();
+  damageSpace.show();
+}
+
+function Stats(){
+
+//* * * * * * * * * * * * * * * * Bonus damge from the following feats * * * * * * * * * * * * * *
+
+  this.ASf  	= 0;				// init Arcane Strike feat
+  this.DAf  	= 0;				// init Deadly Aim feat
+  this.ESmm 	= 1.0;				// init Empower Spell Metamagic feat
+  this.ISmm		= 0;				// init Intensify Spell Metamagic feat
+  this.SUb  	= 0;				// init Inspire Courage Bardic feat
+  this.SUw 	    = 0;				// init Intense Spell Evoker feat
+
+//* * * * * * * * * * * * * * * * * * * * Read Character Stats * * * * * * * * * * * * * * * * * * * *
+
+  let charStatForm = $("#charStats input");	 // Character Stats pointer
+  this.getCharacterStats = function(){
+	this.CL	    = parseInt(charStatForm[0].value);
+	this.BAB1	= parseInt(charStatForm[1].value);
+	this.BAB2	= parseInt(charStatForm[2].value);
+	this.BAB3	= parseInt(charStatForm[3].value);
+	this.BAB4	= parseInt(charStatForm[4].value);
+	this.BAB5	= parseInt(charStatForm[5].value);
+	this.STR	= parseInt(charStatForm[6].value);
+	this.DEX	= parseInt(charStatForm[7].value);
+	this.CON	= parseInt(charStatForm[8].value);
+	this.INT	= parseInt(charStatForm[9].value);
+	this.WIS	= parseInt(charStatForm[10].value);
+	this.CHR	= parseInt(charStatForm[11].value);
+	} //End of getCharacterStats function
+
+//* * * * * * * * * * * * * * * * * * * Read Combat Stats * * * * * * * * * * * * * * * * * * * * * *
+
+  let combStatForm = $("#combatStats input");
+  this.getCombatStats = function(){
+
+	this.VSf = combStatForm[0].checked;
+	if (combStatForm[1].checked) {this.ASf  = Math.floor(1 + Math.min(4,this.CL/5))};
+	if (combStatForm[2].checked) {this.DAf  = 2 + 2 * Math.floor(this.BAB1/4);};
+	if (combStatForm[5].checked) {this.ESmm = 1.5};
+	if (combStatForm[3].checked) {this.SUb  = 1};
+	if (combStatForm[4].checked) {this.SUw  = Math.floor(this.CL/2);};
+//	this.ISmm = combStatForm[6].checked;
+	if (combStatForm[6].checked) {this.ISmm = 5;};
+	this.MXmm = combStatForm[7].checked;
+	this.johnRules = combStatForm[8].checked;
+	this.lawlerRules= combStatForm[9].checked;
+	} // End of getCombatStats function
+
+//* * * *  * * * * * * * * * * * * * * *  Dice rolling function * * * * * * * * * * * * * * * * * * * * *
+
+  this.diceRoll = function(damageDice){
+	let damage      = 0;
+	let roll        = 0;
+	let diceRolled  = $("#diceRolled");
+  let johnRulesCnt = 0; // does not permit maximum roll metamagic to exceed 2 loops
+
+    //* * * * * * * * This John rules allows for additional roll of dice when max is rolled * * * * * * * 
+	do{
+		roll     = Math.floor(Math.random()* damageDice) + 1;
+		if (this.MXmm && johnRulesCnt < 1) {roll = damageDice;}
+		if (roll == damageDice && this.lawlerRules) {roll += 1;};
+		damage   += roll;
+		diceRolled.append("<a> "+roll.toString()+", </a>");
+    if(this.johnRules) {johnRulesCnt += 1};
+	} while(roll >= damageDice && this.johnRules && johnRulesCnt <=1);
+	
+    //	diceRolled.append("<a><br></a>");
+	return damage;
+	} // End of the diceRoll function.
+}// End of Stats Object
+
+function ArcaneSpell(spellStr){
+  this.getCharacterStats();
+  this.getCombatStats();
+  this.damageBonus = 0;
+
+//              name of spell
+
+  this.spellName = spellStr[6];
+
+//              number of dice rolls
+
+  if((/\d+CL/i).test(spellStr[0])){
+	let temp  = spellStr[0].match(/\d+/g);
+	this.diceNum = Math.min(parseInt(temp[0])*this.CL,parseInt(temp[1])+this.ISmm);
+  }else if((/\d+BAB/i).test(spellStr[0])){
+	temp = spellStr[0].match(/\d+/g);
+	this.diceNum = parseInt(temp[0]);
+	if((this.BAB2 > 0)) this.diceNum += 1;
+	if((this.BAB3 > 0)) this.diceNum += 1;
+	if((this.BAB4 > 0)) this.diceNum += 1;
+	if((this.BAB5 > 0)) this.diceNum += 1;
+	this.damageBonus += Math.floor((this.STR - 10)/2);
+  }else{
+	this.diceNum = parseInt(spellStr[0].match(/\d+/i));
+  }
+
+//              dice type and initial damage bonus
+
+  if((/\d+\+/).test(spellStr[1])){
+	temp = spellStr[1].match(/\d+/g);
+	this.damageBonus += parseInt(temp[1]);
+  }
+  this.dice = parseInt(spellStr[1].match(/\d+/i));
+  this.evocation = (/evo/i).test(spellStr[4]);
+
+//              damage munition type weapon like type
+
+  this.projectile = !(/force/).test(spellStr[2].toLowerCase());
+
+//              calculate number of munition bolts
+// spellStr=   [0]   [1]        [2]                  [3]                   [4]         [5]
+// AMM:			4 * d4+1*(missiles of force)*((CL-1)/1,max10 missiles)*(evocation)*(1st level)
+
+  if((/CL/i).test(spellStr[3])){
+	temp = spellStr[3].match(/\d+/g);
+	if (temp.length == 1){
+      this.bolts = this.CL;
+    }else{
+      this.bolts = Math.min(Math.floor(1+(this.CL-parseInt(temp[0]))/parseInt(temp[1])),parseInt(temp[2])+this.ISmm);
+	}
+//	console.log(`CL = ${this.CL}, temp = ${temp},bolts = ${this.bolts}`);
+  }else{
+	this.bolts = 1;
+  }
+
+//              additional damage bonuse dut to feats
+
+  this.mult	= this.ESmm;	// Empower Spell megamatic feat
+  this.damageBonus += this.ASf + this.DAf + this.SUb;
+  if(this.evocation){this.damageBonus += this.SUw;}
+
+//              Calculate the damage
+
+  this.damageDealt  = function(){
+	let totalDamage = 0;
+	let diceRolled  = $("#diceRolled");
+	for(let i = 1; i<=this.bolts; i++){
+	  let dice = 0;
+	  for(let j = 1; j<= this.diceNum; j++){
+		dice += this.diceRoll(this.dice);
+	  }
+	  if(this.VSf && this.projectile){dice += this.diceRoll(this.dice);}
+	  let damage = Math.floor(this.mult*(dice + this.damageBonus));
+	  totalDamage += damage;
+	  let stringy = "<ul> "+i.toString()+": dice rolled was " +
+	  dice.toString()+" for "+damage.toString()+" damage.</ul>";
+	  $("ol").append(stringy);
+	  diceRolled.append("<a><br></a>");
+	};
+	stringy = "<ul><br><em> Total damage dealt by "+this.spellName+" is "+totalDamage+"</em> </ul>";
+	$("ol").append(stringy);
+	return totalDamage;
+  }
+}
+
+function spellInsert(e){
+
+  console.log(e.value);
+  let spellStr  = e.value.split("*");
+  $("ol ul").remove();           //remove previous attack lists
+  $("#diceRolled a").remove();//remove previous attack rolls
+  ArcaneSpell.prototype = new Stats();//ArcaneSpell inherits Stats object
+  ArcaneSpell.prototype.constructor = ArcaneSpell;//restore original constructor
+  let spell = new ArcaneSpell(spellStr);
+  let dmgDealt = spell.damageDealt();
+
+}
+
+$(document).ready(function(){
+
+  $("#resetBtn").click(function(){
+	$("ol ul").remove();
+	$("#diceRolled a").remove();
+	let damage = $(".dmgTotal");
+	for(let key in damage){damage[key].innerHTML = " ";}
+  });
+});
+
+
+</script>
+
+</body>
+</html>
